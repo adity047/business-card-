@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card Design</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="business-card">
+        <div class="card-header">
+            <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+            <h1 class="name">John Doe</h1>
+            <p class="title">Web Developer</p>
+        </div>
+        <div class="card-body">
+            <p><strong>Email:</strong> john.doe@example.com</p>
+            <p><strong>Phone:</strong> (123) 456-7890</p>
+            <p><strong>Website:</strong> www.johndoe.com</p>
+        </div>
+        <div class="card-footer">
+            <p>&copy; 2024 John Doe. All Rights Reserved.</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+}
+
+.business-card {
+    background-color: white;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.business-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 10px;
+}
+
+.name {
+    margin: 10px 0 5px 0;
+    font-size: 24px;
+}
+
+.title {
+    margin: 0;
+    font-size: 18px;
+}
+
+.card-body {
+    padding: 20px;
+    text-align: left;
+}
+
+.card-body p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.card-footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const emailElement = document.querySelector('.card-body p:nth-child(1)');
+    const phoneElement = document.querySelector('.card-body p:nth-child(2)');
+    const websiteElement = document.querySelector('.card-body p:nth-child(3)');
+
+    emailElement.addEventListener('click', function () {
+        copyToClipboard('john.doe@example.com');
+        alert('Email copied to clipboard!');
+    });
+
+    phoneElement.addEventListener('click', function () {
+        copyToClipboard('(123) 456-7890');
+        alert('Phone number copied to clipboard!');
+    });
+
+    websiteElement.addEventListener('click', function () {
+        copyToClipboard('www.johndoe.com');
+        alert('Website URL copied to clipboard!');
+    });
+
+    function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
+});
